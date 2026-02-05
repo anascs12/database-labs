@@ -1,18 +1,24 @@
--- Lab 1: Books Read Tracker
--- Author: Anas Khan
--- Date: 05|02|2026
+-- =========================================================
+-- Lab 1: Create Books Table
+-- Semester: Spring 2026
+-- Course: Data Science
+-- Instructor: Muhammad Usama Afridi
+-- Student: Anas Khan
+-- =========================================================
 
+-- Step 1: Create books_read table
 CREATE TABLE books_read (
-book_id SERIAL PRIMARY KEY,
-title VARCHAR(200) NOT NULL,
-author VARCHAR(100) NOT NULL,
-category VARCHAR(50),
-pages INTEGER CHECK (pages > 0),
-date_finished DATE,
-rating DECIMAL(3,1) CHECK (rating >= 0 AND rating <= 5.0),
-notes TEXT
+    book_id SERIAL PRIMARY KEY,                        -- Auto-increment ID
+    title VARCHAR(200) NOT NULL,                       -- Book title (required)
+    author VARCHAR(100) NOT NULL,                      -- Author name (required)
+    category VARCHAR(50),                              -- Book category (ML, Stats, etc.)
+    pages INTEGER CHECK (pages > 0),                  -- Number of pages (>0)
+    date_finished DATE,                                -- Date book was finished
+    rating DECIMAL(3,1) CHECK (rating >= 0 AND rating <= 5.0), -- Rating 0-5
+    notes TEXT                                        -- Additional notes
 );
 
+-- Step 2: Insert sample data
 INSERT INTO books_read 
 (title, author, category, pages, date_finished, rating, notes) 
 VALUES
@@ -22,3 +28,10 @@ VALUES
 ('Statistical Rethinking', 'Richard McElreath', 'Statistics', 593, '2024-11-12', 4.8, 'Bayesian statistics approach'),
 ('Clean Code', 'Robert C. Martin', 'Programming', 464, '2024-12-01', 4.0, 'Good coding practices');
 
+-- Step 3: Verify table
+-- List all tables
+\dt
+-- View table structure
+\d books_read
+-- View inserted data
+SELECT * FROM books_read;
